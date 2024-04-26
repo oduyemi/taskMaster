@@ -98,8 +98,6 @@ Contributions to the TaskMaster Frontend project are welcome. If you find any bu
 
 TaskMaster Frontend is licensed under the MIT License. See the [LICENSE](https://github.com/your-username/taskmaster-frontend/blob/main/LICENSE) file for details.
 
-This documentation provides an overview of the TaskMaster Frontend application, its features, usage instructions, dependencies, and folder structure. For detailed information, refer to the project's source code and documentation.
-
 
 
 # API Documentation (Server)
@@ -251,5 +249,3 @@ Task list endpoints allow users to manage their task lists.
 - **Response**:
   - Status: 200 - OK
   - JSON object representing the task list
-
-This documentation provides an overview of the TaskMaster API's endpoints and their functionalities. For detailed usage instructions, refer to the provided endpoint descriptions.
