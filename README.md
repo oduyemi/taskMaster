@@ -107,7 +107,7 @@ TaskMaster is a task management API designed for a to-do application. It provide
 ## Base URL
 
 ```
-https://taskmaster-api.com
+https://taskmasterapi.vercel.app
 ```
 
 ## Authentication
