@@ -5,7 +5,8 @@ import Register from './pages/Register';
 // import TaskOverview from './pages/TaskOverview';
 // import PrivateRoute from './components/PrivateRoute';
 
-import './App.css'
+import './App.css';
+import "animate.css";
 
 function App() {
 
