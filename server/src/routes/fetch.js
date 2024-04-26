@@ -19,7 +19,7 @@ const taskCategoryModel_1 = __importDefault(require("../models/taskCategoryModel
 const listModel_1 = __importDefault(require("../models/listModel"));
 const router = express_1.default.Router();
 router.get("/", (req, res) => {
-    res.json({ message: "Welcome to LearnAPI" });
+    res.json({ message: "Welcome to TaskMaster API" });
 });
 router.get("/users", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {

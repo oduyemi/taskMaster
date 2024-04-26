@@ -10,7 +10,7 @@ const router = express.Router();
 
 
 router.get("/", (req: Request, res: Response) => {
-    res.json({ message: "Welcome to LearnAPI" });
+    res.json({ message: "Welcome to TaskMaster API" });
     });
 
 router.get("/users", async (req: Request, res: Response) => {
