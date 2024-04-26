@@ -26,3 +26,9 @@ npm-debug.log*
 
 
 /server/node_modules
+
+/server.vercel
+
+/server/.env
+
+/server/node_modules/
