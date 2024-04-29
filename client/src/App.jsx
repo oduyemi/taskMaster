@@ -2,9 +2,9 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
-// import TaskOverview from './pages/TaskOverview';
+import TaskOverview from './pages/TaskOverview';
 // import PrivateRoute from './components/PrivateRoute';
-
+import "react-toastify/dist/ReactToastify.css";
 import './App.css';
 import "animate.css";
 
@@ -17,6 +17,7 @@ function App() {
         <Route path='/' element={<Home />} />
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register />} />
+        <Route path='/task-overview' element={<TaskOverview />} />
         {/* <Route element={<PrivateRoute />}>
           <Route path='/task-overview' element={<TaskOverview />} />
         </Route> */}
