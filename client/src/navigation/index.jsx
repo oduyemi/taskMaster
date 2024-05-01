@@ -27,7 +27,7 @@ export const Navigation = () => {
                     <Route path="/forget-password" element={<ForgetPassword />} />
                     <Route path="/reset-password" element={<ResetPassword />} />
                     <Route path="/register" element={<Register />} />
-                    <Route path="/task-overview" element={<TaskOverview />} />
+                    <Route path="/to-do-list" element={<TaskOverview />} />
                     {/* <Route element={<PrivateRoute />}>
                         <Route path="/task-overview" element={<TaskOverview />} />
                     </Route> */}

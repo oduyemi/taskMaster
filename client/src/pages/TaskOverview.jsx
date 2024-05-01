@@ -4,7 +4,6 @@ import Navbar from "../components/Navbar"
 const TaskOverview = () => {
   return (
     <>
-      <Navbar />
       <section>
         <div className="md:h-90vh">
           <div className="flex flex-col justify-center h-full md:w-1/2">

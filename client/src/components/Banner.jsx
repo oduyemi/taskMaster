@@ -74,9 +74,9 @@ export const Banner = () => {
                                     The best task manager <br/>and to-do list app.
                                 </Typography>
                                 <Box className="slider-btns">
-                                    <Link
+                                    <Link to="/login"
                                         data-animation="fadeInLeft" 
-                                        data-delay="1.0s" to="industries.html"
+                                        data-delay="1.0s"
                                     >
                                         <Button 
                                             variant="contained"

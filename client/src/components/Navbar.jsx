@@ -114,7 +114,12 @@ const Navbar = () => {
                         <li className="flex items-center cursor-pointer my-3" onClick={toggleSideFae}>Features<img src={sideFae ? upArrow : downArrow} alt="arrow" className="h-[8px] ml-[18px]" /></li>
                         <div className={`${sideFae ? "h-full" : "h-[0px]"} overflow-hidden ml-[35px] flex flex-col transition-all duration-300`}>
                             <ul className="my-[15px]">
-                                <li className="flex items-start my-2.5 "><img src={todo} alt="todo icon" className="h-[20px] w-5 mr-2" />Todo List</li>
+                                <li className="flex items-start my-2.5 ">
+                                    <Link to="/to-do-list">
+                                        <img src={todo} alt="todo icon" className="h-[20px] w-5 mr-2" />
+                                    </Link>
+                                    <Link to="/to-do-list">Todo List</Link>
+                                </li>
                                 <li className="flex  items-start my-2.5 "><img src={calender} alt="calender icon" className="h-[20px] w-5 mr-2" />Calendar</li>
                                 <li className="flex items-start my-2.5 "><img src={reminder} alt="reminder icon" className="h-[20px] w-4 mr-3" />Reminders</li>
                                 <li className="flex items-start my-2.5 "><img src={planning} alt="planning icon" className="h-[20px] mr-2" />Planning</li>
