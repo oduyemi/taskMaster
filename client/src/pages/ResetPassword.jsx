@@ -56,16 +56,16 @@ const ResetPassword = () => {
                 </div>
                 <div>
                     <label 
-                        htmlFor="oldPassword" 
+                        htmlFor="confirmNewPassword" 
                         className="block text-sm font-medium leading-6 text-gray-900">
-                        Old Password
+                        Confirm New Password
                     </label>
                     <div className="mt-2">
                         <input 
-                        name="oldPassword" 
+                        name="confirmNewPassword" 
                         type="password" 
                         required
-                        placeholder="Old password"
+                        placeholder="Confirm New password"
                         className="px-3 block w-full rounded-md py-2 text-gray-800 shadow-sm border border-[#4291B0] sm:text-sm sm:leading-6 outline-none" />
                     </div>
                 </div>
@@ -77,7 +77,7 @@ const ResetPassword = () => {
                 color="primary"
                 className="flex w-full justify-center px-3 py-2 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-[#6ec2e3] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#4291B0]"
                 >
-                    Reset
+                    Reset Password
                 </Button>
             </div>
           </form>
