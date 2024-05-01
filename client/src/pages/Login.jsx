@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { toast, ToastContainer } from "react-toastify";
-
+import { Box, Typography, Button} from "@mui/material";
 import { useNavigate } from "react-router-dom"
 import { useState } from "react"
 // import Cookies from "universal-cookie"
@@ -72,33 +72,38 @@ const Login = () => {
   }
 
   return (
-    <>
+    <Box margin="10px">
     <ToastContainer />
-      <section className="flex justify-between min-h-svh">
-        
-        <div className='w-1/2 bg-[#4291B0] md:block hidden' style={loginBg} >
-
-        </div>
-
-        <div className="flex flex-col justify-center w-full min-h-full px-6 py-12 md:w-1/2 lg:px-8">
-
-
+      <section className="min-h-svh mt-14">
         <div className="text-center sm:mx-auto sm:w-full sm:max-w-sm">
-        <h1 className="text-[#4291B0] font-bold text-3xl">Welcome Back!</h1>
-          <h2 className="mt-2 text-2xl font-bold text-gray-700">Sign in to your account</h2>
+            <Typography 
+              variant="h3" 
+              className="text-[#1976d2] font-bold text-3xl"
+              sx={{
+                fontSize:"larger"
+              }}
+            >
+              Welcome Back
+            </Typography>
+          <Typography
+            variant="h6"
+            paragraph
+            className="mt-2 text-2xl font-bold text-gray-700"
+          >
+            Sign in to your account
+          </Typography>
         </div>
 
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
           <form className="space-y-6" onSubmit={handleSubmit} method="POST">
           <div>
-          <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">Email address</label>
+          <label htmlFor="mailOrUsername" className="block text-sm font-medium leading-6 text-gray-900">Email or Username</label>
           <div className="mt-1">
             <input 
-            id="email" 
-            name="email" 
-            type="email"
+            name="mailOrUsername" 
+            type="text"
             required
-            placeholder='Enter your email' 
+            placeholder='Enter your email or username' 
             className="px-3 block w-full rounded-md py-2 text-gray-800 shadow-sm border border-[#4291B0] sm:text-sm sm:leading-6 outline-none" />
           </div>
         </div>
@@ -123,12 +128,15 @@ const Login = () => {
             </div>
 
             <div>
-            <button 
-            type="submit" 
-            // onClick={displayLoginNotification}
-            className="flex w-full justify-center rounded-md bg-[#4291B0] px-3 py-2 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-[#6ec2e3] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#4291B0]">
-            Login
-          </button>
+            <Button 
+              type="submit"
+              variant="contained"
+              size="large"
+              color="primary"
+              className="flex w-full justify-center px-3 py-2 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-[#6ec2e3] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#4291B0]"
+            >
+                Login
+            </Button>
             </div>
           </form>
 
@@ -137,11 +145,9 @@ const Login = () => {
         <Link to="/register" className="font-semibold leading-6 text-[#4291B0] hover:text-[#4291B0] ml-2">Sign up</Link>
       </p>
         </div>
-        
-       </div>
       </section>
 
-    </>
+    </Box>
   )
 }
 

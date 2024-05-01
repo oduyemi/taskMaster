@@ -95,8 +95,8 @@ const Navbar = () => {
                 </ul>
             </div>
             <div className="hidden md:flex transition-all duration-700font-epilogue text-[15px] items-center text-gray-600">
-                <button className="h-[50px] w-[110px] mx-2 rounded-xl hover:text-[#1976d2]">Login</button>
-                <button className="border-2 border-[#1976d2] h-[50px] w-[110px] mx-5 rounded-xl hover:text-[#1976d2] hover:border-gray-800">Register</button>
+            <Link to="/login"><button className="h-[50px] w-[110px] mx-2 rounded-xl hover:text-[#1976d2]">Login</button></Link>
+                <Link to="/register"><button className="border-2 border-[#1976d2] h-[50px] w-[110px] mx-5 rounded-xl hover:text-[#1976d2] hover:border-gray-800">Register</button></Link>
             </div>
             <div className="flex items-center mr-8">
                 <img src={menu} alt="menuIcon"className={Sidenav ? "hidden" : "flex h-[22px] cursor-pointer md:hidden"} onClick={toggleSidenav} />
@@ -135,8 +135,8 @@ const Navbar = () => {
                         <li className="my-3"><Link to="/about">About</Link></li>
                     </ul>
                     <div className="text-gray-600 font-epilogue flex flex-col justify-center items-center">
-                        <button className="h-[50px] w-[200px] rounded-xl hover:text-[#1976d2]">Login</button>
-                        <button className="border-2 border-[#1976d2] h-[50px] w-[200px] rounded-xl hover:text-[#1976d2] hover:border-gray-800">Register</button>
+                        <Link to="/login"><button className="h-[50px] w-[200px] rounded-xl hover:text-[#1976d2]">Login</button></Link>
+                        <Link to="/register"><button className="border-2 border-[#1976d2] h-[50px] w-[200px] rounded-xl hover:text-[#1976d2] hover:border-gray-800">Register</button></Link>
                     </div>
 
                 </div>
