@@ -90,7 +90,6 @@ const Navbar = () => {
                 <ul className="hidden md:flex font-epilogue text-[15px] items-center mx-12 text-gray-600">
                     <DropDown name={"Features"} items={featureList} />
                     <li className={Comnav ? "flex items-center mx-6 text-gray-800 cursor-pointer" : "flex items-center mx-6 hover:text-[#1976d2] cursor-pointer"} onClick={toggleComNav}>Company<img src={Comnav ? upArrow : downArrow} alt="arrow" className="h-[8px] mx-2" /></li>
-                    <li className="mx-6 hover:text-[#1976d2] cursor-pointer">Careers</li>
                     <li className="mx-6 hover:text-[#1976d2] cursor-pointer"><Link to="/about">About</Link></li>
                 </ul>
             </div>
@@ -103,9 +102,7 @@ const Navbar = () => {
             </div>
             <div className={Comnav ? "absolute top-20 ml-[370px] w-[120px] h-[100px] shadow-2xl rounded-xl flex flex-col justify-center bg-white" : "hidden"}>
                 <ul className="flex flex-col text-gray-600 font-epilogue text-[15px] items-center">
-                    <li className="my-1">History</li>
                     <li className="my-1">Our Team</li>
-                    <li className="my-1">Blog</li>
                 </ul>
             </div>
             <div className={`absolute flex justify-end overflow-hidden w-[100%] ${Sidenav ? "pointer-events-auto" : "pointer-events-none"}`}>

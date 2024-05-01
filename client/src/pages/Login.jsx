@@ -88,7 +88,11 @@ const Login = () => {
           <Typography
             variant="h6"
             paragraph
-            className="mt-2 text-2xl font-bold text-gray-700"
+            className="mt-2 text-2xl text-gray-700"
+            sx={{
+              fontSize:"14px",
+              fontWeight: 400
+            }}
           >
             Sign in to your account
           </Typography>
@@ -114,7 +118,7 @@ const Login = () => {
                 htmlFor="password" 
                 className="block text-sm font-medium leading-6 text-gray-900">Password</label>
                 <div className="text-sm">
-                  <a href="#" className="font-semibold text-[#4291B0] hover:text-[#4291B0]">Forgot password?</a>
+                  <Link to="/forget-password" className="font-semibold text-[#4291B0] hover:text-[#4291B0]">Forgot password?</Link>
                 </div>
               </div>
               <div className="mt-2">
