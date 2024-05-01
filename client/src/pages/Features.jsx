@@ -7,7 +7,7 @@
 const Features = () => {
   return (
     <>
-      <p>This is Features</p>
+      <p>This is Features page</p>
     </>
   )
 }
