@@ -1,0 +1,30 @@
+.sidebar li span {
+    display: block;
+}
+
+.sidebar {
+    width: 120px; 
+}
+
+.powerIcon{
+    display: none !important;
+}
+
+
+@media (max-width: 768px) {
+    .sidebar li span,
+    .sidebar a Button
+    {
+        display: none;
+    }
+
+    .sidebar {
+        width: 24px; 
+    }
+
+    .sidebar li svg,
+    .powerIcon
+    {
+        display: block !important;
+    }
+}

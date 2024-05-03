@@ -74,7 +74,7 @@ export const Banner = () => {
                                     The best task manager <br/>and to-do list app.
                                 </Typography>
                                 <Box className="slider-btns">
-                                    <Link to="/login"
+                                    <Link to="/to-do-list"
                                         data-animation="fadeInLeft" 
                                         data-delay="1.0s"
                                     >
@@ -158,7 +158,7 @@ export const Banner = () => {
                                 <Box className="slider-btns">
                                     <Link
                                         data-animation="fadeInLeft" 
-                                        data-delay="1.0s" to="industries.html"
+                                        data-delay="1.0s" to="/to-do-list"
                                     >
                                         <Button 
                                             variant="contained"
@@ -169,7 +169,6 @@ export const Banner = () => {
                                         </Button>
                                     </Link>
                                     <Link data-animation="fadeInRight" data-delay="1.0s" className="popup-video video-btn ani-btn" to="https://www.youtube.com/watch?v=1aP-TXUpNoU">
-                                        {/* <i className="fas fa-play"></i> */}
                                     </Link>
                                 </Box>
                             </Box>
