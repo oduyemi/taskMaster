@@ -1,4 +1,5 @@
 import { Routes, Route } from "react-router-dom";
+import { UserProvider } from "../UserContext";
 import Navbar from "../components/Navbar";
 import Home from "../pages/Home";
 import About from "../pages/About";
@@ -10,6 +11,8 @@ import Register from "../pages/Register";
 import TaskOverview from "../pages/TaskOverview";
 import NewTask from "../pages/NewTask";
 import UpdateTask from "../pages/UpdateTask";
+import ProfilePage from "../pages/ProfilePage";
+
 
 
 
@@ -19,7 +22,7 @@ import UpdateTask from "../pages/UpdateTask";
 
 export const Navigation = () => {
     return (
-        <>
+        <UserProvider>
             <Navbar />
                 <Routes>
                     <Route path="/" element={<Home />} />
@@ -29,14 +32,12 @@ export const Navigation = () => {
                     <Route path="/forget-password" element={<ForgetPassword />} />
                     <Route path="/reset-password" element={<ResetPassword />} />
                     <Route path="/register" element={<Register />} />
-                    <Route path="/to-do-list" element={<TaskOverview />} />
+                    <Route path="/dashboard" element={<TaskOverview />} />
+                    <Route path="/profile" element={<ProfilePage />} />
                     <Route path="/new-task" element={<NewTask />} />
                     <Route path="/edit-task" element={<UpdateTask />} />
-                    {/* <Route element={<PrivateRoute />}>
-                        <Route path="/task-overview" element={<TaskOverview />} />
-                    </Route> */}
                 </Routes>
-        </>
+        </UserProvider>
   )
 }
 

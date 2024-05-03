@@ -89,8 +89,9 @@ const Navbar = () => {
                 <Link to="/"><img src={logo} alt="logo" className="md:h-[35px] md:ml-3" /></Link>
                 <ul className="hidden md:flex font-epilogue text-[15px] items-center mx-12 text-gray-600">
                     <DropDown name={"Features"} items={featureList} />
-                    <li className={Comnav ? "flex items-center mx-6 text-gray-800 cursor-pointer" : "flex items-center mx-6 hover:text-[#1976d2] cursor-pointer"} onClick={toggleComNav}>Company<img src={Comnav ? upArrow : downArrow} alt="arrow" className="h-[8px] mx-2" /></li>
-                    <li className="mx-6 hover:text-[#1976d2] cursor-pointer"><Link to="/about">About</Link></li>
+                    <li className={Comnav ? "flex items-center mx-6 text-gray-800 cursor-pointer" : "flex items-center mx-6 hover:text-[#1976d2] cursor-pointer"} onClick={toggleComNav}>About
+                    <img src={Comnav ? upArrow : downArrow} alt="arrow" className="h-[8px] mx-2" /></li>
+                    <li className="mx-6 hover:text-[#1976d2] cursor-pointer"><Link to="/dashboard">Dashboard</Link></li>
                 </ul>
             </div>
             <div className="hidden md:flex transition-all duration-700font-epilogue text-[15px] items-center text-gray-600">
@@ -102,7 +103,8 @@ const Navbar = () => {
             </div>
             <div className={Comnav ? "absolute top-20 ml-[370px] w-[120px] h-[100px] shadow-2xl rounded-xl flex flex-col justify-center bg-white" : "hidden"}>
                 <ul className="flex flex-col text-gray-600 font-epilogue text-[15px] items-center">
-                    <li className="my-1">Our Team</li>
+                <Link to="/about"><li className="my-1">About us</li></Link>
+                <Link to="/team"><li className="my-1">Our Team</li></Link>
                 </ul>
             </div>
             <div className={`absolute flex justify-end overflow-hidden w-[100%] ${Sidenav ? "pointer-events-auto" : "pointer-events-none"}`}>
@@ -115,26 +117,24 @@ const Navbar = () => {
                         <div className={`${sideFae ? "h-full" : "h-[0px]"} overflow-hidden ml-[35px] flex flex-col transition-all duration-300`}>
                             <ul className="my-[15px]">
                                 <li className="flex items-start my-2.5 ">
-                                    <Link to="/to-do-list">
+                                    <Link to="/dashboard">
                                         <img src={todo} alt="todo icon" className="h-[20px] w-5 mr-2" />
                                     </Link>
-                                    <Link to="/to-do-list">Todo List</Link>
+                                    <Link to="/dashboard">Todo List</Link>
                                 </li>
                                 <li className="flex  items-start my-2.5 "><img src={calender} alt="calender icon" className="h-[20px] w-5 mr-2" />Calendar</li>
                                 <li className="flex items-start my-2.5 "><img src={reminder} alt="reminder icon" className="h-[20px] w-4 mr-3" />Reminders</li>
                                 <li className="flex items-start my-2.5 "><img src={planning} alt="planning icon" className="h-[20px] mr-2" />Planning</li>
                             </ul>
                         </div>
-                        <li className="flex items-center cursor-pointer my-3" onClick={toggleSideCom}>Company<img src={sideCom ? upArrow : downArrow} alt="arrow" className="h-[8px] ml-[15px]" /></li>
+                        <li className="flex items-center cursor-pointer my-3" onClick={toggleSideCom}>About<img src={sideCom ? upArrow : downArrow} alt="arrow" className="h-[8px] ml-[15px]" /></li>
                         <div className={`${sideCom ? "h-full" : "h-[0px]"} overflow-hidden transition-all duration-300 flex flex-col ml-[35px]`}>
                             <ul className="my-[15px]">
-                                <li className="my-2.5">History</li>
-                                <li className="my-2.5">Our Team</li>
-                                <li className="my-2.5">Blog</li>
+                            <Link to="/about"><li className="my-2.5">About us</li></Link>
+                            <Link to="/team"><li className="my-1">Our Team</li></Link>
                             </ul>
                         </div>
-                        <li className="my-3">Careers</li>
-                        <li className="my-3"><Link to="/about">About</Link></li>
+                        <li className="my-3"><Link to="/dashboard">Dashboard</Link></li>
                     </ul>
                     <div className="text-gray-600 font-epilogue flex flex-col justify-center items-center">
                         <Link to="/login"><button className="h-[50px] w-[200px] rounded-xl hover:text-[#1976d2]">Login</button></Link>

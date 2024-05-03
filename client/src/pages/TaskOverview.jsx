@@ -1,6 +1,8 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, Button } from "@mui/material";
 import React from "react";
 import { Link } from "react-router-dom";
+import Calendar from "../components/Calendar";
+import { Holidays } from "../components/Holidays";
 import { Sidebar } from "../components/Sidebar";
 
 
@@ -68,6 +70,18 @@ const TaskOverview = () => {
                                       }}
                                     >
                                       It appears your list is empty
+                                      <span className="inline pl-3">
+                                        <Link to="/new-task">
+                                          <Button 
+                                            variant="contained"
+                                            size="small"
+                                            color="primary"
+                                            className="mt-10 inline text-sm font-semibold leading-6 text-white shadow-sm hover:bg-[#6ec2e3] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#4291B0]"
+                                            >
+                                            Add New
+                                          </Button>
+                                        </Link>
+                                        </span>
                                     </Typography>
                                   </Box>
                                 </Link>
@@ -107,6 +121,19 @@ const TaskOverview = () => {
                                         }}
                                       >
                                         It appears your list is empty
+                                        <span className="inline pl-3">
+                                        <Link to="/new-task">
+                                          <Button 
+                                            type="submit"
+                                            variant="contained"
+                                            size="small"
+                                            color="primary"
+                                            className="mt-10 inline text-sm font-semibold leading-6 text-white shadow-sm hover:bg-[#6ec2e3] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#4291B0]"
+                                            >
+                                            Add New
+                                          </Button>
+                                        </Link>
+                                        </span>
                                       </Typography>
                                   </Box>
                                 </Link>
@@ -128,7 +155,7 @@ const TaskOverview = () => {
                                             }} 
                                             className="my-2 ml-3 text-lg font-bold text-gray-800"
                                         >
-                                          Public Holidays
+                                          Notable Days in 2024
                                         </Typography>
                                       </Box>
                                       <Typography 
@@ -138,8 +165,7 @@ const TaskOverview = () => {
                                       >
                                         ------------
                                       </Typography>
-                                      <p className="mb-2 text-gray-600">A Project Audit is a formal review of a project, which is intended
-                                          to assess the extent up to which project management standards are being upheld.</p>
+                                      <Holidays />
                                   </Box>
                                 </Link>
                           </Box>
@@ -168,8 +194,7 @@ const TaskOverview = () => {
                                       >
                                         ------------
                                       </Typography>
-                                      <p className="mb-2 text-gray-600">A security hacker is someone who explores methods for breaching
-                                          defenses and exploiting weaknesses in a computer system or network.</p>
+                                      <Calendar />
                                   </Box>
                               </Link>
                           </Box>
@@ -198,8 +223,30 @@ const TaskOverview = () => {
                                       >
                                         ------------
                                       </Typography>
-                                      <p className="mb-2 text-gray-600">Bot development frameworks were created as advanced software tools
-                                          that eliminate a large amount of manual work and accelerate the development process.</p>
+                                      <Typography 
+                                        variant="h6" 
+                                        paragraph 
+                                        className="mb-2 text-gray-600"
+                                        sx={{
+                                          fontSize: "16px",
+                                          fontWeight: 300
+                                        }}
+                                      >
+                                        It appears your list is empty
+                                        <span className="inline pl-3">
+                                          <Link to="/new-task">
+                                            <Button 
+                                              type="submit"
+                                              variant="contained"
+                                              size="small"
+                                              color="primary"
+                                              className="mt-10 inline text-sm font-semibold leading-6 text-white shadow-sm hover:bg-[#6ec2e3] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#4291B0]"
+                                            >
+                                              Add New
+                                            </Button>
+                                          </Link>
+                                        </span>
+                                      </Typography>
                                   </Box>
                                 </Link>
                           </Box>
