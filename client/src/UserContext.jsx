@@ -21,13 +21,11 @@ export const UserProvider = ({ children }) => {
       
       if (response.status === 200 && response.data.message === "success") {
         console.log("Success:", response.data);
-        const { adminID, fname, lname, email, phone, token } = response.data;
-
-        // Store user data and token in localStorage
-        localStorage.setItem("user", JSON.stringify({ userID, fname, lname, email }));
+        const { userID, username, email, token } = response.data;
+        localStorage.setItem("user", JSON.stringify({ userID, username, email }));
         localStorage.setItem("token", token);
 
-        setUser({ adminID, fname, lname, email, phone });
+        setUser({ adminID, username, email, phone });
 
         setFlashMessage({
           type: "success",
@@ -35,7 +33,7 @@ export const UserProvider = ({ children }) => {
         });
 
         setTimeout(() => {
-          window.location.href = "/admin";
+          window.location.href = "/dashboard";
         }, 1000);
       } else if (response.status === 400) {
         console.log("Error:", response.data);
