@@ -7,7 +7,6 @@ import axios from "axios";
 
 
 
-
 export const Profile = () => {
     const { user, setUser } = useContext(UserContext);
     const [flashMessage, setFlashMessage] = useState(null)
