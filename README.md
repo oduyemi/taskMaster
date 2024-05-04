@@ -38,6 +38,8 @@ To run the TaskMaster Frontend locally, follow these steps:
    ```
 
 5. Access the application in your browser at `http://localhost:3000`.
+6. 
+7. The project is deployed at `https://taskmaster-zoep.onrender.com`.
 
 ## Usage
 
@@ -96,7 +98,7 @@ Contributions to the TaskMaster Frontend project are welcome. If you find any bu
 
 ## License
 
-TaskMaster Frontend is licensed under the MIT License. See the [LICENSE](https://github.com/your-username/taskmaster-frontend/blob/main/LICENSE) file for details.
+TaskMaster Frontend is licensed under the MIT License. See the [LICENSE](https://github.com/oduyemi/taskMaster/blob/main/LICENSE) file for details.
 
 
 
