@@ -12,7 +12,7 @@ import db from "./db";
 const app: Application = express();
 
 const corsOptions = {
-  origin: "http://localhost:3000",
+  origin: ["http://localhost:3000", "https://taskmaster-zoep.onrender.com/"],
 };
 
 app.use(cors(corsOptions));

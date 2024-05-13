@@ -26,5 +26,7 @@
     .powerIcon
     {
         display: block !important;
+        position: inherit;
+        z-index: 1000;
     }
 }

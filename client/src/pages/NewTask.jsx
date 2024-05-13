@@ -9,7 +9,7 @@ const NewTask = () => {
 
     return (
         <>
-            <Box className="flex">
+            <Box className="flex rel">
                 <Sidebar />
                 <Box maxWidth="md" 
                     margin="10px" 

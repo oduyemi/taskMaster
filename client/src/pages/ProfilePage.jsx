@@ -9,7 +9,7 @@ const ProfilePage = () => {
     const [todo, setTodo] = useState("");
 
     return (
-        <Box className="flex">
+        <Box className="flex rel">
             <Sidebar />
             <Profile />
         </Box>   

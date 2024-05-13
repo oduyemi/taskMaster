@@ -6,7 +6,7 @@ import { useState } from "react"
 const ResetPassword = () => {
 
   return (
-    <Box margin="10px">
+    <Box margin="10px" className="rel">
     <ToastContainer />
       <section className="min-h-svh mt-14">
         <div className="text-center sm:mx-auto sm:w-full sm:max-w-sm">
@@ -75,7 +75,7 @@ const ResetPassword = () => {
                 variant="contained"
                 size="large"
                 color="primary"
-                className="flex w-full justify-center px-3 py-2 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-[#6ec2e3] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#4291B0]"
+                className="flex w-full rel justify-center px-3 py-2 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-[#6ec2e3] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#4291B0]"
                 >
                     Reset Password
                 </Button>

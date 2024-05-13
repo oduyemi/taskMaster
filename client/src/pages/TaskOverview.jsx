@@ -10,16 +10,16 @@ const TaskOverview = () => {
 
     return (
       <>
-          <Box className="flex">
+          <Box className="flex rel">
             <Sidebar />
 
-            <Box className="container relative flex flex-col justify-between h-full max-w-6xl px-10 mx-auto xl:px-0 mt-5">
+            <Box className="container relative z-1 flex flex-col justify-between h-full max-w-6xl px-10 mx-auto xl:px-0 mt-14">
               <Typography 
                 variant="h2" 
                 sx={{
                   fontSize:"20px"
                 }}
-                className="mb-1 text-3xl font-extrabold leading-tight text-gray-900"
+                className="mb-1 rel pt-14 text-3xl font-extrabold leading-tight text-gray-900"
               >
                 Tasks
               </Typography>
@@ -37,11 +37,11 @@ const TaskOverview = () => {
               <Box className="w-full">
                   <Box className="flex flex-col w-full mb-10 sm:flex-row">
                       <Box className="w-full mb-10 sm:mb-0 sm:w-1/2">
-                          <Box className="relative h-full ml-0 mr-0 sm:mr-10">
-                              <span className="absolute top-0 left-0 w-full h-full mt-1 ml-1 bg-indigo-500 rounded-lg"></span>
+                          <Box className="relative z-1 h-full ml-0 mr-0 sm:mr-10">
+                              <span className="absolute z-1 top-0 left-0 w-full h-full mt-1 ml-1 bg-indigo-500 rounded-lg"></span>
                                 <Link to="/must-do-list">
-                                  <Box className="relative h-full p-5 bg-white border-2 border-indigo-500 rounded-lg">
-                                    <Box className="flex items-center -mt-1">
+                                  <Box className="relative z-1 h-full p-5 bg-white border-2 border-indigo-500 rounded-lg">
+                                    <Box className="flex items-center -mt-1 rel">
                                         <Typography 
                                           variant="h3"
                                           sx={{
@@ -88,10 +88,10 @@ const TaskOverview = () => {
                           </Box>
                       </Box>
                       <Box className="w-full sm:w-1/2">
-                          <Box className="relative h-full ml-0 md:mr-10">
-                              <span className="absolute top-0 left-0 w-full h-full mt-1 ml-1 bg-purple-500 rounded-lg"></span>
+                          <Box className="relative z-1 h-full ml-0 md:mr-10">
+                              <span className="absolute z-1 top-0 left-0 w-full h-full mt-1 ml-1 bg-purple-500 rounded-lg"></span>
                                 <Link to="/should-do-list">
-                                  <Box className="relative h-full p-5 bg-white border-2 border-purple-500 rounded-lg">
+                                  <Box className="relative z-1 h-full p-5 bg-white border-2 border-purple-500 rounded-lg">
                                       <Box className="flex items-center -mt-1">
                                       <Typography 
                                             variant="h3"
@@ -142,10 +142,10 @@ const TaskOverview = () => {
                   </Box>
                   <Box className="flex flex-col w-full mb-5 sm:flex-row">
                       <Box className="w-full mb-10 sm:mb-0 sm:w-1/2">
-                          <Box className="relative h-full ml-0 mr-0 sm:mr-10">
-                              <span className="absolute top-0 left-0 w-full h-full mt-1 ml-1 bg-blue-400 rounded-lg"></span>
+                          <Box className="relative z-1 h-full ml-0 mr-0 sm:mr-10">
+                              <span className="absolute z-1 top-0 left-0 w-full h-full mt-1 ml-1 bg-blue-400 rounded-lg"></span>
                                 <Link to="/holidays">
-                                  <Box className="relative h-full p-5 bg-white border-2 border-blue-400 rounded-lg">
+                                  <Box className="relative z-1 h-full p-5 bg-white border-2 border-blue-400 rounded-lg">
                                       <Box className="flex items-center -mt-1">
                                         <Typography 
                                             variant="h3"
@@ -171,10 +171,10 @@ const TaskOverview = () => {
                           </Box>
                       </Box>
                       <Box className="w-full mb-10 sm:mb-0 sm:w-1/2">
-                          <Box className="relative h-full ml-0 mr-0 sm:mr-10">
-                              <span className="absolute top-0 left-0 w-full h-full mt-1 ml-1 bg-yellow-400 rounded-lg"></span>
+                          <Box className="relative z-1 h-full ml-0 mr-0 sm:mr-10">
+                              <span className="absolute z-1 top-0 left-0 w-full h-full mt-1 ml-1 bg-yellow-400 rounded-lg"></span>
                                 <Link to="/calendar">
-                                  <Box className="relative h-full p-5 bg-white border-2 border-yellow-400 rounded-lg">
+                                  <Box className="relative z-1 h-full p-5 bg-white border-2 border-yellow-400 rounded-lg">
                                       <Box className="flex items-center -mt-1">
                                         <Typography 
                                             variant="h3"
@@ -200,10 +200,10 @@ const TaskOverview = () => {
                           </Box>
                       </Box>
                       <Box className="w-full sm:w-1/2">
-                          <Box className="relative h-full ml-0 md:mr-10">
-                              <span className="absolute top-0 left-0 w-full h-full mt-1 ml-1 bg-green-500 rounded-lg"></span>
+                          <Box className="relative z-1 h-full ml-0 md:mr-10">
+                              <span className="absolute z-1 top-0 left-0 w-full h-full mt-1 ml-1 bg-green-500 rounded-lg"></span>
                                 <Link to="/could-do-list">
-                                  <Box className="relative h-full p-5 bg-white border-2 border-green-500 rounded-lg">
+                                  <Box className="relative z-1 h-full p-5 bg-white border-2 border-green-500 rounded-lg">
                                       <Box className="flex items-center -mt-1">
                                         <Typography 
                                           variant="h3"
