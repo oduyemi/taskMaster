@@ -20,7 +20,7 @@ export const UserProvider = ({ children }) => {
 
   const handleLogin = async (email, password) => {
     try {
-      const response = await axios.post("https://grow-africa-api.vercel.app/send/admin/signin", { email, password });
+      const response = await axios.post("https://taskmasterapi.vercel.app/send/login", { email, password });
       
       if (response.status === 200 && response.data.message === "success") {
         console.log("Success:", response.data);
@@ -28,7 +28,7 @@ export const UserProvider = ({ children }) => {
         localStorage.setItem("user", JSON.stringify({ userID, username, email }));
         localStorage.setItem("token", token);
 
-        setUser({ adminID, username, email, phone });
+        setUser({ userID, username, email, phone });
 
         setFlashMessage({
           type: "success",
@@ -37,7 +37,7 @@ export const UserProvider = ({ children }) => {
 
         setTimeout(() => {
           window.location.href = "/dashboard";
-        }, 1000);
+        }, 2000);
       } else if (response.status === 400) {
         console.log("Error:", response.data);
         setFlashMessage({ type: "error", message: "All fields are required!" });
@@ -55,7 +55,7 @@ export const UserProvider = ({ children }) => {
     localStorage.removeItem("user");
     localStorage.removeItem("token");
     setUser(null);
-    window.location.href = "/admin/signin";
+    window.location.href = "/login";
   };
 
   return (

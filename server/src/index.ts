@@ -12,7 +12,7 @@ import db from "./db";
 const app: Application = express();
 
 const corsOptions = {
-  origin: ["http://localhost:3000", "https://taskmaster-zoep.onrender.com/"],
+  origin: ["http://localhost:5173", "https://taskmaster-zoep.onrender.com"],
 };
 
 app.use(cors(corsOptions));
@@ -28,7 +28,7 @@ app.use("/erase", eraseRouter);
 db.on("error", console.error.bind(console, "Mongodb Connection Error:"));
 
 app.use("/api", createProxyMiddleware({
-  target: "http://192.168.43.113:3000/",
+  target: "http://192.168.43.113:3000",
   changeOrigin: true,
 }));
 

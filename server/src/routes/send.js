@@ -55,7 +55,7 @@ router.post("/register", (req, res) => __awaiter(void 0, void 0, void 0, functio
         return res.status(201).json({
             message: "User registered successfully",
             token,
-            nextStep: "/next-login-page"
+            nextStep: "/login"
         });
     }
     catch (error) {
@@ -95,6 +95,9 @@ router.post("/login", (req, res) => __awaiter(void 0, void 0, void 0, function* 
         req.session.user = userSession;
         return res.status(200).json({
             message: "User login successful!.",
+            userID: user._id,
+            username: user.username,
+            email: user.email,
             nextStep: "/next-dashboard",
             token,
         });

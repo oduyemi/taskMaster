@@ -1,6 +1,8 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { toast, ToastContainer } from "react-toastify";
 import { Box, Button, Typography } from '@mui/material';
+import axios from 'axios';
 
 
 const displayLoginNotification = () => {
@@ -9,6 +11,48 @@ const displayLoginNotification = () => {
 
 
 const Register = () => {
+  const [flashMessage, setFlashMessage] = useState(null);
+  const [formData, setFormData] = useState({
+    username: "",
+    email: "",
+    password: "",
+    confirmPassword: ""
+});
+
+const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prevState => ({
+        ...prevState,
+        [name]: value
+    }));
+};
+
+const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+        const response = await axios.post('https://taskmasterapi.vercel.app/send/register', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+            toast.success(data.message);
+            setTimeout(() => {
+              window.location.href = data.nextStep;
+            }, 2000);
+        } else {
+            toast.error(data.message);
+        }
+    } catch (error) {
+        console.error('Error during registration:', error);
+        toast.error('Error registering user');
+    }
+  }
 
     return (
         <Box margin="10px" className="rel">
@@ -27,16 +71,19 @@ const Register = () => {
                 </Box>
 
                 <Box className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-                  <form className="space-y-6" action="#" method="POST">
+                  <form className="space-y-6" onSubmit={handleSubmit} method="POST">
                     <Box>
                       <label htmlFor="username" className="block text-sm font-medium leading-6 text-gray-900">Create Username</label>
                       <Box className="mt-1">
                         <input 
-                        name="username" 
-                        type="text"  
-                        required
-                        placeholder='Create Username' 
-                        className="px-3 block w-full rounded-md py-2 text-gray-800 shadow-sm border border-[#4291B0] sm:text-sm sm:leading-6 outline-none" />
+                          name="username" 
+                          type="text"  
+                          required
+                          placeholder='Create Username' 
+                          className="px-3 block w-full rounded-md py-2 text-gray-800 shadow-sm border border-[#4291B0] sm:text-sm sm:leading-6 outline-none" 
+                          onChange={handleChange}
+                          value={formData.username}
+                        />
                       </Box>
                     </Box>
 
@@ -44,11 +91,14 @@ const Register = () => {
                       <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">Email address</label>
                       <Box className="mt-1">
                         <input 
-                        name="email" 
-                        type="email"
-                        required
-                        placeholder='Enter your email' 
-                        className="px-3 block w-full rounded-md py-2 text-gray-800 shadow-sm border border-[#4291B0] sm:text-sm sm:leading-6 outline-none" />
+                          name="email" 
+                          type="email"
+                          required
+                          placeholder='Enter your email' 
+                          className="px-3 block w-full rounded-md py-2 text-gray-800 shadow-sm border border-[#4291B0] sm:text-sm sm:leading-6 outline-none"
+                          onChange={handleChange}
+                          value={formData.email}
+                        />
                       </Box>
                     </Box>
 
@@ -61,9 +111,13 @@ const Register = () => {
                         <Box className="relative">
                           <input 
                             name="password"  
+                            type="password"
                             required
                             placeholder="Enter your password"
-                            className="px-3 block w-full rounded-md py-2 text-gray-800 shadow-sm border border-[#4291B0] sm:text-sm sm:leading-6 outline-none" />
+                            className="px-3 block w-full rounded-md py-2 text-gray-800 shadow-sm border border-[#4291B0] sm:text-sm sm:leading-6 outline-none"
+                            onChange={handleChange}
+                            value={formData.password}
+                          />
                         
                           <Box className="text-[#4291B0] absolute inset-y-0 right-0 p-2 text-sm flex items-center cursor-pointer" >
                           </Box>
@@ -77,10 +131,14 @@ const Register = () => {
                       <Box className="mt-1">
                         <Box className="relative">
                           <input 
-                            name="Confirmassword"  
+                            name="confirmPassword"  
+                            type="password"
                             required
-                            placeholder="Enter your password"
-                            className="px-3 block w-full rounded-md py-2 text-gray-800 shadow-sm border border-[#4291B0] sm:text-sm sm:leading-6 outline-none" />
+                            placeholder="Confirm password"
+                            className="px-3 block w-full rounded-md py-2 text-gray-800 shadow-sm border border-[#4291B0] sm:text-sm sm:leading-6 outline-none"
+                            onChange={handleChange}
+                            value={formData.confirmPassword}
+                          />
                         
                           <Box className="text-[#4291B0] absolute inset-y-0 right-0 p-2 text-sm flex items-center cursor-pointer" >
                           </Box>

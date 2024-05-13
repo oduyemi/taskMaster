@@ -49,7 +49,6 @@ router.post("/register", async (req: Request, res: Response) => {
         }
 
         const hashedPassword = await hash(password, 10);
-
         const newUser: IUser = new User({ username, email, password: hashedPassword });
 
         await newUser.save();
@@ -73,7 +72,7 @@ router.post("/register", async (req: Request, res: Response) => {
         return res.status(201).json({
             message: "User registered successfully",
             token,
-            nextStep: "/next-login-page"
+            nextStep: "/login"
         });
     } catch (error) {
         console.error("Error during user registration:", error);
@@ -127,6 +126,9 @@ router.post("/login", async (req, res) => {
 
         return res.status(200).json({
             message: "User login successful!.",
+            userID: user._id,
+            username: user.username,
+            email: user.email,
             nextStep: "/next-dashboard",
             token,
         });
