@@ -153,7 +153,7 @@ const handleSubmit = async (e) => {
                         variant="contained"
                         size="large"
                         color="primary"
-                        onClick={displayLoginNotification}
+                        onClick={handleSubmit}
                         className="flex w-full rel justify-center px-3 py-2 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-[#6ec2e3] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#4291B0]"
                       >
                           Register
