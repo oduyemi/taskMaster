@@ -152,7 +152,9 @@ const Navbar = () => {
                             </>
                         ) : (
                             <>
-                                <Button onClick={handlePopupOpen} className="md:px-6 px-4 py-2 sm:text-sm">Logout</Button>
+                                <Button onClick={handlePopupOpen} color="primary" className="md:px-6 px-4 py-2 sm:text-sm">
+                                    Logout
+                                </Button>
                             </>
                         )}
                     </div>
