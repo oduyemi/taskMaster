@@ -1,4 +1,5 @@
-import React, { useState } from "react"
+import React, { useState } from "react";
+import { UserContext } from "../UserContext";
 import { Link } from "react-router-dom";
 import logo from "../assets/images/logo.png";
 import downArrow from "../assets/images/icon-arrow-down.svg";
@@ -9,10 +10,14 @@ import reminder from "../assets/images/icon-reminders.svg";
 import planning from "../assets/images/icon-planning.svg";
 import menu from "../assets/images/icon-menu.svg";
 import close from "../assets/images/icon-close-menu.svg";
+import { Box } from "@mui/material";
 
 
 const DropDown = ({ name, items }) => {
+    const { user, handleSignout } = useContext(UserContext);
     const [swi, setSwi] = useState(false)
+    const userDetails = JSON.parse(localStorage.getItem("userDetails")); 
+
     const toggle = () => {
         if (swi) {
             setSwi(false)
@@ -132,8 +137,24 @@ const Navbar = () => {
                         <li className="my-3"><Link to="/dashboard">Dashboard</Link></li>
                     </ul>
                     <div className="text-gray-600 font-epilogue flex flex-col justify-center items-center">
-                        <Link to="/login"><button className="h-[50px] w-[200px] rounded-xl hover:text-[#1976d2]">Login</button></Link>
-                        <Link to="/register"><button className="border-2 border-[#1976d2] h-[50px] w-[200px] rounded-xl hover:text-[#1976d2] hover:border-gray-800">Register</button></Link>
+                        {userDetails ? ( 
+                            <>
+                                <Link to="/login">
+                                    <button className="h-[50px] w-[200px] rounded-xl hover:text-[#1976d2]">
+                                        Login
+                                    </button>
+                                </Link>
+                                <Link to="/register">
+                                    <button className="border-2 border-[#1976d2] h-[50px] w-[200px] rounded-xl hover:text-[#1976d2] hover:border-gray-800">
+                                        Register
+                                    </button>
+                                </Link>
+                            </>
+                        ) : (
+                            <>
+                                <Button onClick={handlePopupOpen} className="md:px-6 px-4 py-2 sm:text-sm">Logout</Button>
+                            </>
+                        )}
                     </div>
 
                 </div>

@@ -29,7 +29,6 @@ const Login = () => {
     console.log("flashMessage:", flashMessage); 
     return (
       <Box margin="10px">
-        <ToastContainer />
           <section className="min-h-svh mt-14">
             <Box className="text-center sm:mx-auto sm:w-full sm:max-w-sm">
                 <Typography 

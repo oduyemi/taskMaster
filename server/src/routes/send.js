@@ -23,11 +23,11 @@ const router = express_1.default.Router();
 require("dotenv").config();
 router.post("/register", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const { username, email, password, cpwd } = req.body;
-        if (![username, email, password, cpwd].every(field => field)) {
+        const { username, email, password, confirmPassword } = req.body;
+        if (![username, email, password, confirmPassword].every(field => field)) {
             return res.status(400).json({ message: "All fields are required" });
         }
-        if (password !== cpwd) {
+        if (password !== confirmPassword) {
             return res.status(400).json({ message: "Both passwords must match" });
         }
         const existingUserByEmail = yield userModel_1.default.findOne({ email });

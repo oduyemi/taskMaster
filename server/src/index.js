@@ -15,7 +15,7 @@ const erase_1 = __importDefault(require("./routes/erase"));
 const db_1 = __importDefault(require("./db"));
 const app = (0, express_1.default)();
 const corsOptions = {
-    origin: ["http://localhost:5173", "https://taskmaster-zoep.onrender.com"],
+    origin: ["http://localhost:5173", "https://taskmaster-zoep.onrender.com", "https://www.taskmaster-zoep.onrender.com"],
 };
 app.use((0, cors_1.default)(corsOptions));
 app.use(body_parser_1.default.json());

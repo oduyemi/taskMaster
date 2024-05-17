@@ -1,13 +1,10 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { toast, ToastContainer } from "react-toastify";
 import { Box, Button, Typography } from '@mui/material';
 import axios from 'axios';
 
 
-const displayLoginNotification = () => {
-  toast.success("Registration Successful");
-};
+
 
 
 const Register = () => {
@@ -28,35 +25,44 @@ const handleChange = (e) => {
 };
 
 const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-        const response = await axios.post('https://taskmasterapi.vercel.app/send/register', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(formData)
-        });
+  e.preventDefault();
+  try {
+    const response = await axios.post("https://taskmasterapi.vercel.app/send/register", formData, {
+      headers: { "Content-Type": "application/json" }
+  });
 
-        const data = await response.json();
+      const data = response.data;
 
-        if (response.ok) {
-            toast.success(data.message);
-            setTimeout(() => {
-              window.location.href = data.nextStep;
-            }, 2000);
-        } else {
-            toast.error(data.message);
-        }
-    } catch (error) {
-        console.error('Error during registration:', error);
-        toast.error('Error registering user');
+      setFlashMessage({
+        type: "success",
+        message: "Admin registered successfully. Redirecting to Login.",
+    });
+
+    setFormSubmitted(true);
+
+    setTimeout(() => {
+        window.location.href = "/login"
+    }, 2000);
+
+  } catch (error) {
+    console.error("Error:", error);
+
+    let errorMessage;
+    if (error.response) {
+        console.log("Response Data:", error.response.data);
+        errorMessage = error.response.data.detail || error.response.data.message;
+    } else {
+        console.error("Request Error:", error.request);
+        errorMessage = "No response received from the server. Please try again later.";
     }
-  }
 
+    setFlashMessage({ type: "error", message: errorMessage });
+}
+
+}
     return (
         <Box margin="10px" className="rel">
-            <ToastContainer />
+            <Box />
               <section className="min-h-svh mt-14">
                 <Box className="text-center sm:mx-auto sm:w-full sm:max-w-sm">
                   <Typography 
@@ -166,10 +172,8 @@ const handleSubmit = async (e) => {
                     <Link to="/login" className="font-semibold leading-6 text-[#4291B0] hover:text-[#4291B0] ml-2">Login</Link>
                   </p>
                 </Box>
-              {/* </Box> */}
-
-            </section>
-        </Box>
+              </section>
+            </Box>
   )
 }
 

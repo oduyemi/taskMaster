@@ -29,12 +29,12 @@ declare module "express-session" {
 
 router.post("/register", async (req: Request, res: Response) => {
     try {
-        const { username, email, password, cpwd } = req.body;
-        if (![username, email, password, cpwd].every(field => field)) {
+        const { username, email, password, confirmPassword } = req.body;
+        if (![username, email, password, confirmPassword].every(field => field)) {
             return res.status(400).json({ message: "All fields are required" });
         }
 
-        if (password !== cpwd) {
+        if (password !== confirmPassword) {
             return res.status(400).json({ message: "Both passwords must match" });
         }
 
