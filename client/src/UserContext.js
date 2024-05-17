@@ -51,7 +51,7 @@ export const UserProvider = ({ children }) => {
     }
   };
 
-  const handleSignout = () => {
+  const handleLogout = () => {
     localStorage.removeItem("user");
     localStorage.removeItem("token");
     setUser(null);
@@ -59,7 +59,7 @@ export const UserProvider = ({ children }) => {
   };
 
   return (
-    <UserContext.Provider value={{ user, setUser, flashMessage, handleLogin, handleSignout }}>
+    <UserContext.Provider value={{ user, setUser, flashMessage, handleLogin, handleLogout }}>
       {children}
     </UserContext.Provider>
   );

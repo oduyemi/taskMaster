@@ -14,7 +14,7 @@ import { Box } from "@mui/material";
 
 
 const DropDown = ({ name, items }) => {
-    const { user, handleSignout } = useContext(UserContext);
+    const { user, handleLogout } = useContext(UserContext);
     const [swi, setSwi] = useState(false)
     const userDetails = JSON.parse(localStorage.getItem("userDetails")); 
 
@@ -152,7 +152,7 @@ const Navbar = () => {
                             </>
                         ) : (
                             <>
-                                <Button onClick={handlePopupOpen} color="primary" className="md:px-6 px-4 py-2 sm:text-sm">
+                                <Button onClick={handleLogout} color="primary" className="md:px-6 px-4 py-2 sm:text-sm">
                                     Logout
                                 </Button>
                             </>
