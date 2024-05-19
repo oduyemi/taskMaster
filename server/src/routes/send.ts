@@ -1,11 +1,10 @@
-import express, { Request, Response } from "express";
+import express, { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
 import { hash, compare } from "bcrypt";
 import mongoose from "mongoose";
 import User, { IUser } from "../models/userModel";
 import Task from "../models/taskModel";
-import TaskCategory from "../models/taskCategoryModel";
-import List from "../models/listModel";
+
 
 
 
@@ -25,6 +24,17 @@ declare module "express-session" {
         user?: UserSession; 
     }
 }
+
+
+function isAuthenticated(req: Request, res: Response, next: NextFunction) {
+    if (req.session && req.session.user && req.session.user.userID) {
+      next();
+    } else {
+      res.status(401).json({ message: 'Unauthorized: No session available' });
+    }
+  }
+  
+
 
 
 router.post("/register", async (req: Request, res: Response) => {
@@ -84,18 +94,18 @@ router.post("/register", async (req: Request, res: Response) => {
    
 router.post("/login", async (req, res) => {
     try {
-        const { email, username, password } = req.body;
-        if ((!email && !username) || !password) {
+        const { emailOrUsername, password } = req.body;
+        if (!emailOrUsername || !password) {
             return res.status(400).json({ message: "Email/Username and password are required" });
         }
 
         let user: IUser | null = null;
-        if (email) {
-            user = await User.findOne({ email });
-        }
 
-        if (!user && username) {
-            user = await User.findOne({ username });
+        // Check if the input is an email or username
+        if (emailOrUsername.includes('@')) {
+            user = await User.findOne({ email: emailOrUsername });
+        } else {
+            user = await User.findOne({ username: emailOrUsername });
         }
 
         if (!user) {
@@ -133,65 +143,39 @@ router.post("/login", async (req, res) => {
             token,
         });
     } catch (error) {
-        console.error("Error during user login:", error);
+        console.error("Error during user login:", error); 
         return res.status(500).json({ message: "Error logging in user" });
     }
 });
 
 
-router.post("/task", async (req: Request, res: Response) => {
+
+router.post('/task', isAuthenticated, async (req: Request, res: Response) => {
     try {
-        const { title, description, task_category_id, due_date } = req.body;
-        if (![title, description, task_category_id, due_date].every(field => field)) {
-            return res.status(400).json({ message: "All fields are required" });
+        const { task_name, task_priority, due_date } = req.body;
+
+        if (![task_name, task_priority].every(field => field)) {
+            return res.status(400).json({ message: 'All fields are required' });
         }
 
-        const newTask = new Task({ title, description, task_category_id, due_date });
+        if (!req.session.user || !req.session.user.userID) {
+            return res.status(401).json({ message: 'Unauthorized: No session available' });
+        }
+
+        const task_author = req.session.user.userID;
+
+        const newTask = new Task({ task_name, task_priority, task_author, due_date });
         await newTask.save();
 
-        return res.status(201).json({ message: "Task created successfully" });
+        return res.status(201).json({ message: 'Task created successfully' });
     } catch (error) {
-        console.error("Error during task creation:", error);
-        return res.status(500).json({ message: "Error creating task" });
+        console.error('Error during task creation:', error);
+        return res.status(500).json({ message: 'Error creating task' });
     }
 });
 
 
-router.post("/task-category", async (req: Request, res: Response) => {
-    try {
-        const { task_category } = req.body;
-        if (![task_category].every(field => field)) {
-            return res.status(400).json({ message: "All fields are required" });
-        }
 
-        const newCategory = new TaskCategory({ task_category });
-
-        await newCategory.save();
-
-        return res.status(201).json({ message: "Task category created successfully" });
-    } catch (error) {
-        console.error("Error during task category creation:", error);
-        return res.status(500).json({ message: "Error creating task category" });
-    }
-});
-
-
-router.post("/tasks/list", async (req: Request, res: Response) => {
-    try {
-        const { title, description, task_author, tasks } = req.body;
-        if (![title, description, task_author, tasks].every(field => field)) {
-            return res.status(400).json({ message: "All fields are required" });
-        }
-
-        const newList = new List({ title, description, task_author, tasks });
-        await newList.save();
-
-        return res.status(201).json({ message: "Task list created successfully" });
-    } catch (error) {
-        console.error("Error during task list creation:", error);
-        return res.status(500).json({ message: "Error creating task list" });
-    }
-});
 
 
 

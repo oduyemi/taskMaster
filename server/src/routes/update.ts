@@ -1,11 +1,21 @@
-import express, { Request, Response } from "express";
+import express, { Request, Response, NextFunction } from "express";
 import bcrypt from "bcrypt";
 import User from "../models/userModel";
 import Task from "../models/taskModel";
-import TaskCategory from "../models/taskCategoryModel";
-import List from "../models/listModel";
+
+
 
 const router = express.Router();
+
+
+function isAuthenticated(req: Request, res: Response, next: NextFunction) {
+    if (req.session && req.session.user && req.session.user.userID) {
+      next();
+    } else {
+      res.status(401).json({ message: 'Unauthorized: No session available' });
+    }
+  }
+
 
 
 
@@ -69,76 +79,36 @@ router.put("/users/:userId/resetpassword", async (req, res) => {
 });
 
 
-router.put("/tasks/:taskId", async (req, res) => {
+
+router.put('/tasks/:taskId', isAuthenticated, async (req: Request, res: Response) => {
     try {
-        const taskId = req.params.taskId;
-        const { title, description, task_category_id, due_date } = req.body;
+      const userId = req.session?.user?.userID;
+      const taskId = req.params.taskId;
+      const { task_name, task_priority, due_date } = req.body;
+  
+      const task = await Task.findById(taskId);
+      if (!task) {
+        return res.status(404).json({ message: 'Task not found' });
+      }
+  
+      if (task.task_author.toString() !== userId?.toString()) {
+        return res.status(403).json({ message: 'Forbidden: You are not allowed to update this task' });
+      }
+  
+      if (task_name) task.task_name = task_name;
+      if (task_priority) task.task_priority = task_priority;
+      if (due_date) task.due_date = due_date;
 
-        const task = await Task.findById(taskId);
-        if (!task) {
-            return res.status(404).json({ message: "Task not found" });
-        }
-
-        if (title) task.title = title;
-        if (description) task.description = description;
-        if (task_category_id) task.task_category_id = task_category_id;
-        if (due_date) task.due_date = due_date;
-
-        await task.save();
-
-        res.status(200).json({ message: "Task updated successfully" });
+      await task.save();
+  
+      res.status(200).json({ message: 'Task updated successfully', task });
     } catch (error) {
-        console.error("Error updating task:", error);
-        res.status(500).json({ message: "Internal Server Error" });
+      console.error('Error updating task:', error);
+      res.status(500).json({ message: 'Internal Server Error' });
     }
-});
+  });
 
 
-router.put("/tasks/categories/:categoryId", async (req, res) => {
-    try {
-        const categoryId = req.params.categoryId;
-        const { task_category } = req.body;
-
-        const category = await TaskCategory.findById(categoryId);
-        if (!category) {
-            return res.status(404).json({ message: "Task category not found" });
-        }
-
-        if (task_category) category.task_category = task_category;
-
-        await category.save();
-
-        res.status(200).json({ message: "Task category updated successfully" });
-    } catch (error) {
-        console.error("Error updating task category:", error);
-        res.status(500).json({ message: "Internal Server Error" });
-    }
-});
-
-
-router.put("/tasks/lists/:listId", async (req, res) => {
-    try {
-        const listId = req.params.listId;
-        const { title, description, task_author, tasks } = req.body;
-
-        const list = await List.findById(listId);
-        if (!list) {
-            return res.status(404).json({ message: "Task list not found" });
-        }
-
-        if (title) list.title = title;
-        if (description) list.description = description;
-        if (task_author) list.task_author = task_author;
-        if (tasks) list.tasks = tasks;
-
-        await list.save();
-
-        res.status(200).json({ message: "Task list updated successfully" });
-    } catch (error) {
-        console.error("Error updating task list:", error);
-        res.status(500).json({ message: "Internal Server Error" });
-    }
-});
 
 
 

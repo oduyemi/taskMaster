@@ -5,17 +5,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = __importDefault(require("mongoose"));
 const taskSchema = new mongoose_1.default.Schema({
-    title: {
+    task_name: {
         type: String,
         required: true,
     },
-    description: {
+    task_priority: {
         type: String,
-        required: true,
-    },
-    task_category_id: {
-        type: mongoose_1.default.Schema.Types.ObjectId,
-        ref: "TaskCategory",
+        enum: ["could", "should", "must"],
         required: true,
     },
     task_author: {

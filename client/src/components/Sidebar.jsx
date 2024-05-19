@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useState, useContext } from "react";
+import { UserContext } from "../UserContext";
 import { Box, Button, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 import "../assets/css/Sidebar.css";
 import PowerSettingsNewIcon from '@mui/icons-material/PowerSettingsNew';
 
 export const Sidebar = () => {
+    const { user, handleLogout } = useContext(UserContext);
     return (
         <Box className="sidebar bg-[#AD7A99] shadow rounded-md">
             <ul>
@@ -102,6 +104,7 @@ export const Sidebar = () => {
                         variant="contained"
                         size="medium"
                         color="primary"
+                        onClick={handleLogout}
                         className="mt-10 inline text-sm font-semibold leading-6 text-white shadow-sm hover:bg-[#6ec2e3] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#4291B0]"
                         >
                         Logout

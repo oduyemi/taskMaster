@@ -4,28 +4,22 @@ import mongoose, { Schema, Document } from "mongoose";
 
 export interface ITask extends Document {
   _id: mongoose.Types.ObjectId; 
-  title: string;
-  description: string;
-  task_category_id: mongoose.Types.ObjectId; 
+  task_name: string;
+  task_priority: "could" | "should" | "must";
   task_author:  mongoose.Types.ObjectId; 
   due_date: Date;
   updatedAt: Date;
 }
 
 const taskSchema: Schema = new mongoose.Schema({
-  title: {
+  task_name: {
     type: String,
     required: true,
   },
 
-  description: {
+  task_priority: {
     type: String,
-    required: true,
-  },
-
-  task_category_id: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "TaskCategory",
+    enum: ["could", "should", "must"],
     required: true,
   },
 
@@ -38,7 +32,7 @@ const taskSchema: Schema = new mongoose.Schema({
   due_date: {
     type: Date,
   },
-  
+
   updatedAt: {
     type: Date,
     default: Date.now,

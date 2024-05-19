@@ -17,10 +17,16 @@ const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const bcrypt_1 = require("bcrypt");
 const userModel_1 = __importDefault(require("../models/userModel"));
 const taskModel_1 = __importDefault(require("../models/taskModel"));
-const taskCategoryModel_1 = __importDefault(require("../models/taskCategoryModel"));
-const listModel_1 = __importDefault(require("../models/listModel"));
 const router = express_1.default.Router();
 require("dotenv").config();
+function isAuthenticated(req, res, next) {
+    if (req.session && req.session.user && req.session.user.userID) {
+        next();
+    }
+    else {
+        res.status(401).json({ message: 'Unauthorized: No session available' });
+    }
+}
 router.post("/register", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { username, email, password, confirmPassword } = req.body;
@@ -65,16 +71,17 @@ router.post("/register", (req, res) => __awaiter(void 0, void 0, void 0, functio
 }));
 router.post("/login", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const { email, username, password } = req.body;
-        if ((!email && !username) || !password) {
+        const { emailOrUsername, password } = req.body;
+        if (!emailOrUsername || !password) {
             return res.status(400).json({ message: "Email/Username and password are required" });
         }
         let user = null;
-        if (email) {
-            user = yield userModel_1.default.findOne({ email });
+        // Check if the input is an email or username
+        if (emailOrUsername.includes('@')) {
+            user = yield userModel_1.default.findOne({ email: emailOrUsername });
         }
-        if (!user && username) {
-            user = yield userModel_1.default.findOne({ username });
+        else {
+            user = yield userModel_1.default.findOne({ username: emailOrUsername });
         }
         if (!user) {
             return res.status(401).json({ message: "Invalid email/username or password" });
@@ -107,49 +114,23 @@ router.post("/login", (req, res) => __awaiter(void 0, void 0, void 0, function* 
         return res.status(500).json({ message: "Error logging in user" });
     }
 }));
-router.post("/task", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+router.post('/task', isAuthenticated, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const { title, description, task_category_id, due_date } = req.body;
-        if (![title, description, task_category_id, due_date].every(field => field)) {
-            return res.status(400).json({ message: "All fields are required" });
+        const { task_name, task_priority, due_date } = req.body;
+        if (![task_name, task_priority].every(field => field)) {
+            return res.status(400).json({ message: 'All fields are required' });
         }
-        const newTask = new taskModel_1.default({ title, description, task_category_id, due_date });
+        if (!req.session.user || !req.session.user.userID) {
+            return res.status(401).json({ message: 'Unauthorized: No session available' });
+        }
+        const task_author = req.session.user.userID;
+        const newTask = new taskModel_1.default({ task_name, task_priority, task_author, due_date });
         yield newTask.save();
-        return res.status(201).json({ message: "Task created successfully" });
+        return res.status(201).json({ message: 'Task created successfully' });
     }
     catch (error) {
-        console.error("Error during task creation:", error);
-        return res.status(500).json({ message: "Error creating task" });
-    }
-}));
-router.post("/task-category", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    try {
-        const { task_category } = req.body;
-        if (![task_category].every(field => field)) {
-            return res.status(400).json({ message: "All fields are required" });
-        }
-        const newCategory = new taskCategoryModel_1.default({ task_category });
-        yield newCategory.save();
-        return res.status(201).json({ message: "Task category created successfully" });
-    }
-    catch (error) {
-        console.error("Error during task category creation:", error);
-        return res.status(500).json({ message: "Error creating task category" });
-    }
-}));
-router.post("/tasks/list", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    try {
-        const { title, description, task_author, tasks } = req.body;
-        if (![title, description, task_author, tasks].every(field => field)) {
-            return res.status(400).json({ message: "All fields are required" });
-        }
-        const newList = new listModel_1.default({ title, description, task_author, tasks });
-        yield newList.save();
-        return res.status(201).json({ message: "Task list created successfully" });
-    }
-    catch (error) {
-        console.error("Error during task list creation:", error);
-        return res.status(500).json({ message: "Error creating task list" });
+        console.error('Error during task creation:', error);
+        return res.status(500).json({ message: 'Error creating task' });
     }
 }));
 exports.default = router;

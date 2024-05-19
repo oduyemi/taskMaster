@@ -2,8 +2,7 @@ import express, { Request, Response } from "express";
 import { Types } from "mongoose";
 import User from "../models/userModel";
 import Task from "../models/taskModel";
-import TaskCategory from "../models/taskCategoryModel";
-import List from "../models/listModel";
+
 
 const router = express.Router();
 

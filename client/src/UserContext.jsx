@@ -18,23 +18,23 @@ export const UserProvider = ({ children }) => {
     }
   });
 
-  const handleLogin = async (email, password) => {
+  const handleLogin = async (emailOrUsername, password) => {
     try {
-      const response = await axios.post("https://taskmasterapi.vercel.app/send/login", { email, password });
-      
+      const response = await axios.post("https://taskmasterapi.vercel.app/send/login", { emailOrUsername, password });
+  
       if (response.status === 200 && response.data.message === "success") {
         console.log("Success:", response.data);
         const { userID, username, email, token } = response.data;
         localStorage.setItem("user", JSON.stringify({ userID, username, email }));
         localStorage.setItem("token", token);
-
-        setUser({ userID, username, email, phone });
-
+  
+        setUser({ userID, username, email });
+  
         setFlashMessage({
           type: "success",
           message: "Login Successful. Welcome Back!",
         });
-
+  
         setTimeout(() => {
           window.location.href = "/dashboard";
         }, 2000);
@@ -50,7 +50,8 @@ export const UserProvider = ({ children }) => {
       setFlashMessage({ type: "error", message: "Login failed. Please try again later." });
     }
   };
-
+  
+  
   const handleLogout = () => {
     localStorage.removeItem("user");
     localStorage.removeItem("token");
